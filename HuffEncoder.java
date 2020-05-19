@@ -148,8 +148,7 @@ public class HuffEncoder {
         } finally {
             input.close();
             output.close();
-            System.out.println("Successfully compressed " +
-                    pathName.replace(System.getProperty("user.dir"), ""));
+            System.out.println("Successfully compressed " + pathName);
         }
     }
 
@@ -182,8 +181,7 @@ public class HuffEncoder {
         } finally {
             input.close();
             output.close();
-            System.out.println("Successfully decompressed " +
-                    pathName.replace(System.getProperty("user.dir"), ""));
+            System.out.println("Successfully decompressed " + pathName);
         }
     }
 
@@ -195,6 +193,6 @@ public class HuffEncoder {
         FileDialog dialog = new FileDialog((Frame)null, "Select a file to Huffman Encode");
         dialog.setMode(FileDialog.LOAD);
         dialog.setVisible(true);
-        return dialog.getDirectory() + dialog.getFile();
+        return (dialog.getDirectory() + dialog.getFile()).replace(System.getProperty("user.dir")+"/", "");
     }
 }
