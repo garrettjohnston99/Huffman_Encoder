@@ -38,9 +38,7 @@ public class HuffEncoder {
                 // If character already exists in map, increment key
                 if (characterCounts.containsKey(thisChar)) {
                     characterCounts.put(thisChar, characterCounts.get(thisChar) + 1);
-                }
-                // Otherwise place this character in the map
-                else {
+                } else { // Otherwise place this character in the map
                     characterCounts.put(thisChar, 1);
                 }
                 // Read next character
@@ -150,7 +148,8 @@ public class HuffEncoder {
         } finally {
             input.close();
             output.close();
-            System.out.println("Successfully compressed file");
+            System.out.println("Successfully compressed " +
+                    pathName.replace(System.getProperty("user.dir"), ""));
         }
     }
 
@@ -173,8 +172,7 @@ public class HuffEncoder {
                     tree = tree.getRight(); // 1, go right
                 } else {
                     tree = tree.getLeft(); // 0, go left
-                }
-                if (tree.isLeaf()) { // Leaf, code for this character is complete
+                } if (tree.isLeaf()) { // Leaf, code for this character is complete
                     int toWrite = (int) tree.getData().getCharacter();
                     output.write(toWrite); // Write to outfile
                     // Reset tree to root node
@@ -184,7 +182,8 @@ public class HuffEncoder {
         } finally {
             input.close();
             output.close();
-            System.out.println("Successfully decompressed file");
+            System.out.println("Successfully decompressed " +
+                    pathName.replace(System.getProperty("user.dir"), ""));
         }
     }
 
@@ -193,7 +192,7 @@ public class HuffEncoder {
      * @return selected file path
      */
     public static String getPath() {
-        FileDialog dialog = new FileDialog((Frame)null, "Select a file to decompress");
+        FileDialog dialog = new FileDialog((Frame)null, "Select a file to Huffman Encode");
         dialog.setMode(FileDialog.LOAD);
         dialog.setVisible(true);
         return dialog.getDirectory() + dialog.getFile();
